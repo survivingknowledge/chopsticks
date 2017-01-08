@@ -5,10 +5,10 @@ default: &default
   pool: 5
   username: davinci
   password: files
-  host: localhost
-  
+
 
 
 development:
   <<: *default
+  host: localhost
   database: chopsticks
