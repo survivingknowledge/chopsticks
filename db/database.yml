@@ -1,0 +1,14 @@
+default: &default
+  adapter: mysql2
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  username: davinci
+  password: files
+  host: localhost
+  
+
+
+development:
+  <<: *default
+  database: chopsticks
