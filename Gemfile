@@ -15,4 +15,5 @@ group :development do
   gem 'rack-test'
   gem 'tux'
   gem 'shotgun'
+  gem 'pry'
 end
