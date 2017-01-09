@@ -1,0 +1,8 @@
+<h1>Fooditems: Index</h1>
+
+<% if @fooditems != nil %>
+    <% @fooditems.each do |fooditem| %>
+      <p><%= fooditem.name %></p>
+    <% end %>
+<% end %>
+    <h3>There is currently no Fooditems</h3>
