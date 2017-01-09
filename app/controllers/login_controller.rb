@@ -1,5 +1,10 @@
 class LoginController < AppController
 
+  before do
+    #have to define or throws error on .empty?
+    session[:last_page] ||= ""
+  end
+
   # the /? allows user to enter /login or /login/ to both be valid
   get '/login/?' do
     if !logged_in?
@@ -16,7 +21,9 @@ class LoginController < AppController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       #ok so if we don't redirect or render something it throws status must be >= 100
-      redirect '/'
+      #we want to redirect to last page before login else to /
+      #example, visiting /loginrequired , gets sent to /login, will redirect to /loginrequired
+      redirect_to_last_page
     else
       session["login_error"] = "username and/or password failed"
       redirect '/login'
@@ -29,6 +36,16 @@ class LoginController < AppController
       redirect '/'
     else
       redirect '/login'
+    end
+  end
+
+  helpers do
+    def redirect_to_last_page
+      if session[:last_page].empty? || session[:last_page] == '/login'
+        redirect '/'
+      else
+        redirect "#{session[:last_page]}"
+      end
     end
   end
 
