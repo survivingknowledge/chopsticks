@@ -69,5 +69,22 @@ class LoginController < AppController
 
   end
 
+  get '/profile/?' do
+    if logged_in?
+      erb :'login/user_profile'
+    else
+      redirect '/login'
+    end
+  end
+
+  post '/profile/delete' do
+    if !logged_in?
+      redirect '/'
+    else
+      user = current_user
+      user.destroy
+      redirect '/logout'
+    end
+  end
 
 end
