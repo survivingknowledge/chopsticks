@@ -1,0 +1,26 @@
+<div class="login_form">
+  <form action="/login" method="post">
+    <table>
+      <tr>
+        <td><% @errors = nil;%></td>
+      </tr>
+      <tr>
+        <% if @errors != nil %>
+          <td><input class="error" type="text" name="user[username]" placeholder="Username:" tabindex="1" required></td>
+        <% else %>
+          <td><input type="text" name="user[username]" placeholder="Username:" tabindex="1" required></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td><input type="password" name="user[password]" placeholder="Password:" tabindex="2" required></td>
+      </tr>
+      <tr>
+
+        <td><input type="submit" value="Login" tabindex="3"></td>
+      </tr>
+    </table>
+  </form>
+</div>
