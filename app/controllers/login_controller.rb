@@ -73,6 +73,7 @@ class LoginController < AppController
     if logged_in?
       erb :'login/user_profile'
     else
+      session[:last_page] = '/profile'
       redirect '/login'
     end
   end
