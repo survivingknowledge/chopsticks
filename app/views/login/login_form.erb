@@ -2,20 +2,20 @@
   <form action="/login" method="post">
     <table>
       <tr>
-        <td><% @errors = nil;%></td>
+        <td class="error-text"><%= session["login_error"]%></td>
       </tr>
       <tr>
-        <% if @errors != nil %>
-          <td><input class="error" type="text" name="user[username]" placeholder="Username:" tabindex="1" required></td>
+        <% if session["login_error"] %>
+          <td><input class="error" type="text" name="username" placeholder="Username:" tabindex="1" required></td>
         <% else %>
-          <td><input type="text" name="user[username]" placeholder="Username:" tabindex="1" required></td>
+          <td><input type="text" name="[username" placeholder="Username:" tabindex="1" required></td>
         <% end %>
       </tr>
       <tr>
         <td></td>
       </tr>
       <tr>
-        <td><input type="password" name="user[password]" placeholder="Password:" tabindex="2" required></td>
+        <td><input type="password" name="password" placeholder="Password:" tabindex="2" required></td>
       </tr>
       <tr>
 
