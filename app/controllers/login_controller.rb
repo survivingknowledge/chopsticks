@@ -49,4 +49,25 @@ class LoginController < AppController
     end
   end
 
+  get '/signup/?' do
+    if logged_in?
+      redirect '/'
+    else
+      erb :'login/signup'
+    end
+  end
+
+  post '/signup' do
+    session["signup_errors"] = ""
+    if !params[:user][:username].empty? && !params[:user][:password].empty?
+      user = User.create(params[:user])
+      redirect '/'
+    else
+      session["signup_errors"] = "Something went wrong!"
+      redirect '/signup'
+    end
+
+  end
+
+
 end

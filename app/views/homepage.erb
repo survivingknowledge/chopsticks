@@ -1,1 +1,17 @@
 <pre>Homepage</pre>
+
+<% if logged_in? %>
+<p>
+  Welcome <%= current_user.username %>
+</p>
+<p>
+  <a href="/logout">Logout</a>
+</p>
+<% else %>
+<p>
+  <a href="/signup">Sign Up</a>
+</p>
+<p>
+  <a href="/login">Login</a>
+</p>
+<% end %>
