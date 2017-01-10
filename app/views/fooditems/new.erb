@@ -7,7 +7,9 @@
     </tr>
     <tr>
       <td>Serving Size:</td>
-      <td><input type="text" name="fooditem[serving_size]" value=""></td>
+      <td><input type="text" name="fooditem[serving_size]" value="">
+        <select><% Serving_type.all.each do |s| %><option value="<%= s.id %>"><%= s.name %></option><% end %></select>
+      </td>
     </tr>
     <tr>
       <td>Calories:</td>

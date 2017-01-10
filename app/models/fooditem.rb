@@ -4,4 +4,6 @@ class Fooditem < ActiveRecord::Base
   has_many :meal_fooditems
   belongs_to :user
 
+  
+
 end
