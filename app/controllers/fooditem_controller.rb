@@ -31,9 +31,13 @@ class FooditemController < AppController
   end
 
   get '/fooditems/:id/edit/?' do
-    @fooditem = Fooditem.find_by_id(params[:id])
-    if @fooditem
-      erb :'fooditems/edit_fooditem'
+    if logged_in?
+      @fooditem = Fooditem.find_by_id(params[:id])
+      if @fooditem
+        erb :'fooditems/edit_fooditem'
+      else
+        redirect '/fooditems'
+      end
     else
       redirect '/fooditems'
     end
