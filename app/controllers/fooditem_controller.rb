@@ -16,12 +16,16 @@ class FooditemController < AppController
   end
 
   post '/fooditems' do
+    binding.pry
     @fooditem = Fooditem.new(params[:fooditem])
     @fooditem.user_id = current_user.id
     @fooditem.save
     redirect "/fooditems/#{@fooditem.id}"
   end
 
-
+  get '/fooditems/:id/?' do
+    @fooditem = Fooditem.find(params[:id])
+    erb :'fooditems/show_fooditem'
+  end
 
 end
