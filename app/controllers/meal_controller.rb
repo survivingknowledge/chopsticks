@@ -1,7 +1,7 @@
 class MealController < AppController
 
   before do
-    session[:meal] ||= []
+    session[:meals] ||= []
   end
 
   #get users meals for today only
@@ -15,7 +15,16 @@ class MealController < AppController
     end
   end
 
-
+  #add a given foodid  session[:meals]
+  get '/meals/add/:id/?' do
+    @fooditem = Fooditem.find_by_id(params[:id])
+    if @fooditem
+      session[:meals] << @fooditem.id
+      redirect '/meals/new'
+    else
+      redirect '/fooditems'
+    end
+  end
 
   #all meals user has
   get '/meals/?' do
@@ -30,7 +39,9 @@ class MealController < AppController
 
   get '/meals/new/?' do
     if logged_in?
-      @meals = session[:meals] ||= []
+      @meals = session[:meals].collect do |foodid|
+        f = Fooditem.find_by_id(foodid)
+      end
       erb :'meals/meal_new'
     else
       session[:last_page] = '/meals/new'

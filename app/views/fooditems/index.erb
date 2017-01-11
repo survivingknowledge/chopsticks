@@ -2,7 +2,7 @@
 <% if !@fooditems.empty? %>
   <% @fooditems.each do |fooditem| %>
     <p><a href="/fooditems/<%= fooditem.id %>"><%= fooditem.name %></a>
-    <a href="/meal/add/<%= fooditem.id %>">+add to meal</a>
+    <a href="/meals/add/<%= fooditem.id %>">+add to meal</a>
     </p>
   <% end %>
 <% else %>

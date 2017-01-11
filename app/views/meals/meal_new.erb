@@ -4,8 +4,12 @@
   <table>
     <% @meals.each do |meal| %>
     <tr>
-      <td><%= meal %></td>
+      <td><%= meal.name %></td>
+      <td>Fat: <%= meal.total_fat %></td>
+      <td>Carbs: <%= meal.total_carbohydrate %></td>
+      <td>Protein: <%= meal.protein %></td>
     </tr>
     <% end %>
   </table>
 </form>
+<a href="/fooditems">Find Food to Add to Meal</a>
