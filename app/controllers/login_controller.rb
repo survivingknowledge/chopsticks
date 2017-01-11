@@ -35,6 +35,8 @@ class LoginController < AppController
       session.clear
       redirect '/'
     else
+      #weird bug where if revisiting site
+      session.clear
       redirect '/login'
     end
   end

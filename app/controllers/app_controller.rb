@@ -24,9 +24,7 @@ class AppController < Sinatra::Base
     erb :'homepage'
   end
 
-  #woo correctly catches bad urls while still allowing us to access other controlelrs
-  get '/*' do
-    "testing out splat for better catching bad urls"
+  not_found do
     redirect '/'
   end
 
