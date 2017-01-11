@@ -1,1 +1,11 @@
-<h1>Add to meal</h1>
+<h1>New Meal</h1>
+
+<form class="" action="/meals" method="post">
+  <table>
+    <% @meals.each do |meal| %>
+    <tr>
+      <td><%= meal %></td>
+    </tr>
+    <% end %>
+  </table>
+</form>

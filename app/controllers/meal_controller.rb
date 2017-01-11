@@ -1,5 +1,8 @@
 class MealController < AppController
 
+  before do
+    session[:meal] ||= []
+  end
 
   #get users meals for today only
   get '/meals/today/?' do
@@ -27,7 +30,7 @@ class MealController < AppController
 
   get '/meals/new/?' do
     if logged_in?
-
+      @meals = session[:meals] ||= []
       erb :'meals/meal_new'
     else
       session[:last_page] = '/meals/new'
