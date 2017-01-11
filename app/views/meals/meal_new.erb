@@ -2,14 +2,25 @@
 
 <form class="" action="/meals" method="post">
   <table>
+    <th>
+      <td>Fat:</td>
+      <td>Carbs:</td>
+      <td>Protein:</td>
+    </th>
     <% @meals.each do |meal| %>
     <tr>
       <td><%= meal.name %></td>
-      <td>Fat: <%= meal.total_fat %></td>
-      <td>Carbs: <%= meal.total_carbohydrate %></td>
-      <td>Protein: <%= meal.protein %></td>
+      <td><%= meal.total_fat %></td>
+      <td><%= meal.total_carbohydrate %></td>
+      <td><%= meal.protein %></td>
     </tr>
     <% end %>
+    <tr>
+      <td>Totals:</td>
+      <td><%= @totals[:fat] %>g</td>
+      <td><%= @totals[:carbs] %>g</td>
+      <td><%= @totals[:protein] %>g</td>
+    </tr>
   </table>
 </form>
 <a href="/fooditems">Find Food to Add to Meal</a>

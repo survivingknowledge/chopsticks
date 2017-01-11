@@ -39,8 +39,15 @@ class MealController < AppController
 
   get '/meals/new/?' do
     if logged_in?
+      @totals = {fat: 0.0, carbs: 0.0, protein: 0.0}
+
       @meals = session[:meals].collect do |foodid|
         f = Fooditem.find_by_id(foodid)
+
+        @totals[:fat] += f.total_fat
+        @totals[:carbs] += f.total_carbohydrate
+        @totals[:protein] += f.protein
+        f
       end
       erb :'meals/meal_new'
     else
