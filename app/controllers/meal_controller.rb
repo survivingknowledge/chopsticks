@@ -26,10 +26,16 @@ class MealController < AppController
     end
   end
 
+  get '/meals/:id/?' do
+    @meal = Meal.find_by_id(params[:id])
+    @fooditems = @meal.fooditems
+    erb :'meals/meal_show'
+  end
+
   #all meals user has
   get '/meals/?' do
     if logged_in?
-      @meals = current_user.meals
+      @meals = Meal.all
       erb :'meals/meal_index'
     else
       session[:last_page] = '/meals'
@@ -58,7 +64,11 @@ class MealController < AppController
 
   #add meal
   post '/meals' do
-    binding.pry
+    #here we don't check for duplicates yet
+    @meal = Meal.new(params[:meal])
+    @meal.fooditem_ids = params[:fooditem]
+    @meal.save
+    redirect "/meals"
   end
 
 

@@ -1,1 +1,11 @@
 <h1>Meal Show For:</h1>
+<table>
+  <% @fooditems.each do |fooditem| %>
+  <tr>
+    <td><a href="/fooditems/<%= fooditem.id %>"><%= fooditem.name %></a></td>
+    <td><%= fooditem.total_fat %></td>
+    <td><%= fooditem.total_carbohydrate %></td>
+    <td><%= fooditem.protein %></td>
+  </tr>
+  <% end %>
+</table>
