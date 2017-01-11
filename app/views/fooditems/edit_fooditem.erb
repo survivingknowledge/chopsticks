@@ -1,0 +1,42 @@
+
+<div class="login_form fooditem_form">
+  <h1>Edit Fooditem</h1>
+  <form action="/fooditems/<%= @fooditem.id %>" method="post">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="fooditem[name]" value="<%= @fooditem.name %>"></td>
+      </tr>
+      <tr>
+        <td>Serving Size:</td>
+        <td><input type="text" name="fooditem[serving_size]" value="<%= @fooditem.serving_size %>">
+          <select name="fooditem[serving_type_id]"><% ServingType.all.each do |s| %><option value="<%= s.id %>" <%= 'selected' if @fooditem.serving_type_id == s.id %>><%= s.name %></option><% end %></select>
+        </td>
+      </tr>
+      <tr>
+        <td>Calories:</td>
+        <td><input type="text" name="fooditem[calories]" value="<%= @fooditem.calories %>"></td>
+      </tr>
+      <tr>
+        <td>total_fat:</td>
+        <td><input type="text" name="fooditem[total_fat]" value="<%= @fooditem.total_fat %>"></td>
+      </tr>
+      <tr>
+        <td>total_carbohydrate:</td>
+        <td><input type="text" name="fooditem[total_carbohydrate]" value="<%= @fooditem.total_carbohydrate %>"></td>
+      </tr>
+      <tr>
+        <td>sugars:</td>
+        <td><input type="text" name="fooditem[sugars]" value="<%= @fooditem.sugars %>"></td>
+      </tr>
+      <tr>
+        <td>protein:</td>
+        <td><input type="text" name="fooditem[protein]" value="<%= @fooditem.protein %>"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Edit Fooditem"></td>
+      </tr>
+    </table>
+  </form>
+</div>

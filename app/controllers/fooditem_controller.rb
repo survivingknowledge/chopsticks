@@ -15,17 +15,39 @@ class FooditemController < AppController
 
   end
 
+  post '/fooditems/:id' do
+    @fooditem = Fooditem.find_by_id(params[:id])
+    @fooditem.update(params[:fooditem])
+    @fooditem.save
+    redirect "/fooditems/#{@fooditem.id}"
+  end
+
   post '/fooditems' do
-    binding.pry
+
     @fooditem = Fooditem.new(params[:fooditem])
     @fooditem.user_id = current_user.id
     @fooditem.save
     redirect "/fooditems/#{@fooditem.id}"
   end
 
-  get '/fooditems/:id/?' do
-    @fooditem = Fooditem.find(params[:id])
-    erb :'fooditems/show_fooditem'
+  get '/fooditems/:id/edit/?' do
+    @fooditem = Fooditem.find_by_id(params[:id])
+    if @fooditem
+      erb :'fooditems/edit_fooditem'
+    else
+      redirect '/fooditems'
+    end
+  end
+
+
+
+  get '/fooditems/:id' do
+    @fooditem = Fooditem.find_by_id(params[:id])
+    if @fooditem
+      erb :'fooditems/show_fooditem'
+    else
+      redirect '/fooditems'
+    end
   end
 
 end
