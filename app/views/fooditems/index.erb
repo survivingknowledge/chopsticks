@@ -1,7 +1,7 @@
 <h1>Fooditems: Index</h1>
 <% if !@fooditems.empty? %>
   <% @fooditems.each do |fooditem| %>
-    <p><%= fooditem.name %></p>
+    <p><a href="/fooditems/<%= fooditem.id %>"><%= fooditem.name %></a></p>
   <% end %>
 <% else %>
   <h3>Currently no Food items</h3>
