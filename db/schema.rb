@@ -36,10 +36,7 @@ ActiveRecord::Schema.define(version: 20170111154227) do
   end
 
   create_table "meals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.date    "date_eaten"
-    t.time    "time_eaten"
-    t.string  "amount_eaten"
-    t.integer "user_id"
+    t.string "name"
   end
 
   create_table "serving_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -49,6 +46,9 @@ ActiveRecord::Schema.define(version: 20170111154227) do
   create_table "user_meals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id"
     t.integer "meal_id"
+    t.date    "date_eaten"
+    t.time    "time_eaten"
+    t.string  "data"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
