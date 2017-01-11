@@ -1,1 +1,23 @@
-<h1>Show Single Food Item</h1>
+<h1><%= @fooditem.name %></h1>
+<h1>Nutrition Facts</h1>
+<hr>
+<h2>Serving Size <%= @fooditem.serving_size %><%= @fooditem.servingtype %></h2>
+<h2>Calories: <%= @fooditem.calories %></h2>
+<table>
+  <tr>
+    <td>Fat:</td>
+    <td><%= @fooditem.total_fat %></td>
+  </tr>
+  <tr>
+    <td>Carbs:</td>
+    <td><%= @fooditem.total_carbohydrate %></td>
+  </tr>
+  <tr>
+    <td>Sugars:</td>
+    <td><%= @fooditem.sugars %></td>
+  </tr>
+  <tr>
+    <td>Protein:</td>
+    <td><%= @fooditem.protein %></td>
+  </tr>
+</table>
