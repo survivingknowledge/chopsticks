@@ -1,5 +1,4 @@
-class Serving_type < ActiveRecord::Base
-
+class ServingType < ActiveRecord::Base
 
 
 end
