@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170111154227) do
   create_table "fooditems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "serving_type_id"
-    t.string   "serving_size"
+    t.integer  "serving_size"
     t.integer  "calories"
     t.float    "total_fat",          limit: 24
     t.float    "saturated_fat",      limit: 24
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170111154227) do
   end
 
   create_table "meals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "fooditem_id"
     t.date    "date_eaten"
     t.time    "time_eaten"
     t.string  "amount_eaten"

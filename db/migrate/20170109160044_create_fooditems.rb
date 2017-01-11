@@ -3,7 +3,7 @@ class CreateFooditems < ActiveRecord::Migration[5.0]
     create_table :fooditems do |t|
       t.string :name
       t.integer :serving_type_id
-      t.string :serving_size
+      t.integer :serving_size
       t.integer :calories
       t.float :total_fat
       t.float :saturated_fat
