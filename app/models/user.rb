@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   validates :username, length: {minimum:5, maximum: 30}
   validates :password, length: {minimum:5, maximum: 50}
 
-  has_many :meals
+  has_many :user_meals
+  has_many :meals, through: :user_meals
   has_many :fooditems
 
 
