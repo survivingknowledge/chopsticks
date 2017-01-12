@@ -1,4 +1,4 @@
 <h1>Meal Index</h1>
 <% @meals.each do |meal| %>
-  <p> <a href="/meal/<%= meal.id %>"><%= meal.name %></a></p>
+  <p> <a href="/meal/<%= meal.id %>"><%= meal.name %></a> <a href="/<%= current_user.id %>/meal/add/<%= meal.id %>"></a></p>
 <% end %>
