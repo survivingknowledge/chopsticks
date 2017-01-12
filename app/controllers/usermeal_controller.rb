@@ -33,7 +33,6 @@ class UsermealController < AppController
   end
 
   get '/:userid/meals/?' do
-    @user = current_user
     if logged_in? && @user.id == params[:userid].to_i
 
       @meals = @user.meals
@@ -54,7 +53,6 @@ class UsermealController < AppController
     #associate fooditems with meal
     @meal.fooditem_ids = params[:fooditem]
 
-    @user = current_user
     if @meal.save
       #need to use usermeal to get at other tables
       @usermeal = UserMeal.new
