@@ -19,7 +19,11 @@ class MealController < AppController
   get '/meals/:id/?' do
     @meal = Meal.find_by_id(params[:id])
     @fooditems = @meal.fooditems
-    erb :'meals/meal_show'
+    if @fooditems
+      erb :'meals/meal_show'
+    else
+      redirect '/meals'
+    end
   end
 
   #all meals user has
