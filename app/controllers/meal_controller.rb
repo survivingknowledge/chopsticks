@@ -5,6 +5,26 @@ class MealController < AppController
   end
 
 
+  get '/meals/new/?' do
+    if logged_in?
+      @user = current_user
+      @totals = {fat: 0.0, carbs: 0.0, protein: 0.0}
+
+      @meals = session[:meals].collect do |foodid|
+        f = Fooditem.find_by_id(foodid)
+
+        @totals[:fat] += f.total_fat
+        @totals[:carbs] += f.total_carbohydrate
+        @totals[:protein] += f.protein
+        f
+      end
+      erb :'meals/meal_new'
+    else
+      session[:last_page] = '/meals/new'
+      redirect '/login'
+    end
+  end
+  
   #add a given foodid  session[:meals]
   get '/meals/add/:id/?' do
     @fooditem = Fooditem.find_by_id(params[:id])
@@ -49,25 +69,7 @@ class MealController < AppController
     end
   end
 
-  get '/meals/new/?' do
-    if logged_in?
-      @user = current_user
-      @totals = {fat: 0.0, carbs: 0.0, protein: 0.0}
 
-      @meals = session[:meals].collect do |foodid|
-        f = Fooditem.find_by_id(foodid)
-
-        @totals[:fat] += f.total_fat
-        @totals[:carbs] += f.total_carbohydrate
-        @totals[:protein] += f.protein
-        f
-      end
-      erb :'meals/meal_new'
-    else
-      session[:last_page] = '/meals/new'
-      redirect '/login'
-    end
-  end
 
   #add meal
   post '/meals' do
