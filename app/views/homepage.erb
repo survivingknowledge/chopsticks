@@ -2,13 +2,13 @@
 
 <% if logged_in? %>
 <p>
-  Welcome <%= current_user.username %>
+  Welcome <%= @user.username %>
 </p>
 <p>
-  <a href="/<%= current_user.id %>/meals">View My Meals</a>
+  <a href="/<%= @user.id %>/meals">View My Meals</a>
 </p>
 <p>
-  <a href="/<%= current_user.id %>/meals/add">Add To My Meals</a>
+  <a href="/<%= @user.id %>/meals/add">Add To My Meals</a>
 </p>
 <p>
   <a href="/profile">Account</a>

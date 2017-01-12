@@ -10,6 +10,10 @@ class AppController < Sinatra::Base
     set :session_secret, 'super-secret-chopsticks'
   end
 
+  before do
+    @user ||= current_user
+  end
+
   helpers do
      def logged_in?
        !!session[:user_id]

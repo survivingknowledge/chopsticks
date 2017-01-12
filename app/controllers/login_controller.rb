@@ -84,7 +84,7 @@ class LoginController < AppController
     if !logged_in?
       redirect '/'
     else
-      user = current_user
+      user = @user
       user.destroy
       redirect '/logout'
     end

@@ -14,7 +14,8 @@ class UsermealController < AppController
   end
 
   get '/:userid/meals/add/?' do
-    if logged_in? && current_user.id == params[:userid].to_i
+    @user = current_user
+    if logged_in? && @user.id == params[:userid].to_i
       @totals = {fat: 0.0, carbs: 0.0, protein: 0.0}
 
       @meals = session[:meals].collect do |foodid|
