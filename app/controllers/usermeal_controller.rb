@@ -33,6 +33,7 @@ class UsermealController < AppController
   end
 
   get '/:userid/meals/?' do
+    @user = current_user
     if logged_in? && @user.id == params[:userid].to_i
 
       @meals = @user.meals
@@ -48,6 +49,7 @@ class UsermealController < AppController
   end
 
   post '/:userid/meals' do
+    @user = current_user
     #create meal
     @meal = Meal.new(params[:meal])
     #associate fooditems with meal
