@@ -31,8 +31,10 @@ class UsermealController < AppController
   end
 
   get '/:userid/meals/?' do
-    if logged_in? && current_user.id == params[:userid].to_i
-      @meals = current_user.meals
+    @user = current_user
+    if logged_in? && @user.id == params[:userid].to_i
+
+      @meals = @user.meals
       if @meals
         erb :'usermeals/usermeal_index'
       else
@@ -42,6 +44,30 @@ class UsermealController < AppController
       session[:last_page] = '/:userid/meals'
       redirect '/login'
     end
+  end
+
+  post '/:userid/meals' do
+    #create meal
+    @meal = Meal.new(params[:meal])
+    #associate fooditems with meal
+    @meal.fooditem_ids = params[:fooditem]
+
+    @user = current_user
+    if @meal.save
+      #need to use usermeal to get at other tables
+      @usermeal = UserMeal.new
+      @usermeal.user_id = @user.id
+      @usermeal.meal_id = @meal.id
+      @usermeal.date_eaten = Date.today
+      @usermeal.time_eaten = Time.now
+      @usermeal.save
+      #clear session[:meals]
+      session[:meals] = []
+    else
+      "something went wrong"
+    end
+
+    redirect "/#{@user.id}/meals"
   end
 
 end
