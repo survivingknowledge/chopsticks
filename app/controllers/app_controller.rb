@@ -29,6 +29,7 @@ class AppController < Sinatra::Base
   get '/' do
     @page = {}
     @page[:title] = "Homepage"
+    @user = current_user
     erb :'homepage'
   end
 

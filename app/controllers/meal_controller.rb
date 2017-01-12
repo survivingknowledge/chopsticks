@@ -17,6 +17,7 @@ class MealController < AppController
   end
 
   get '/meals/:id/?' do
+    @user = current_user
     @meal = Meal.find_by_id(params[:id])
     if @meal
       @fooditems = @meal.fooditems
@@ -39,6 +40,7 @@ class MealController < AppController
   #all meals user has
   get '/meals/?' do
     if logged_in?
+      @user = current_user
       @meals = Meal.all
       erb :'meals/meal_index'
     else
@@ -49,6 +51,7 @@ class MealController < AppController
 
   get '/meals/new/?' do
     if logged_in?
+      @user = current_user
       @totals = {fat: 0.0, carbs: 0.0, protein: 0.0}
 
       @meals = session[:meals].collect do |foodid|
