@@ -25,7 +25,7 @@ class FooditemController < AppController
   post '/fooditems' do
 
     @fooditem = Fooditem.new(params[:fooditem])
-    @fooditem.user_id = @user.id
+    @fooditem.user_id = current_user.id
     @fooditem.save
     redirect "/fooditems/#{@fooditem.id}"
   end
