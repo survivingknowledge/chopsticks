@@ -1,0 +1,31 @@
+<h1>New Meal</h1>
+
+<form class="" action="" method="post">
+  <input type="text" name="meal[name]" value="" placeholder="Meal Name...">
+  <table>
+    <th>
+      <td>Fat:</td>
+      <td>Carbs:</td>
+      <td>Protein:</td>
+    </th>
+    <% @meals.each do |fooditem| %>
+    <tr>
+      <td><%= fooditem.name %> <input type="hidden" name="fooditem[]" value="<%= fooditem.id %>"></td>
+      <td><%= fooditem.total_fat %></td>
+      <td><%= fooditem.total_carbohydrate %></td>
+      <td><%= fooditem.protein %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>Totals:</td>
+      <td><%= @totals[:fat] %>g</td>
+      <td><%= @totals[:carbs] %>g</td>
+      <td><%= @totals[:protein] %>g</td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td colspan="1"><input type="submit" value="Save Meal"></td>
+    </tr>
+  </table>
+</form>
+<a href="/fooditems">Find Food to Add to Meal</a>

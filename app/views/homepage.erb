@@ -5,6 +5,12 @@
   Welcome <%= current_user.username %>
 </p>
 <p>
+  <a href="/<%= current_user.id %>/meals">View My Meals</a>
+</p>
+<p>
+  <a href="/<%= current_user.id %>/meals/add">Add To My Meals</a>
+</p>
+<p>
   <a href="/profile">Account</a>
 </p>
 <p>
@@ -17,4 +23,5 @@
 <p>
   <a href="/login">Login</a>
 </p>
+
 <% end %>
