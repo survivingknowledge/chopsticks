@@ -4,16 +4,6 @@ class MealController < AppController
     session[:meals] ||= []
   end
 
-  #get users meals for today only
-  get '/meals/today/?' do
-    if logged_in?
-      @meals = current_user.meals_today
-      erb :'/meals/meal_show'
-    else
-      session[:last_page] = '/meals/today'
-      redirect '/login'
-    end
-  end
 
   #add a given foodid  session[:meals]
   get '/meals/add/:id/?' do
