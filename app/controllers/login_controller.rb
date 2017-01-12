@@ -5,6 +5,35 @@ class LoginController < AppController
     session[:last_page] ||= ""
   end
 
+  helpers do
+    def redirect_to_last_page
+      if session[:last_page].empty? || session[:last_page] == '/login'
+        redirect '/'
+      else
+        redirect "#{session[:last_page]}"
+      end
+    end
+  end
+
+  get '/profile' do
+    if logged_in?
+      erb :'login/user_profile'
+    else
+      session[:last_page] = '/account'
+      redirect '/login'
+    end
+  end
+
+  post '/profile/delete' do
+    if !logged_in?
+      redirect '/'
+    else
+      user = @user
+      user.destroy
+      redirect '/logout'
+    end
+  end
+
   # the /? allows user to enter /login or /login/ to both be valid
   get '/login/?' do
     if !logged_in?
@@ -41,15 +70,7 @@ class LoginController < AppController
     end
   end
 
-  helpers do
-    def redirect_to_last_page
-      if session[:last_page].empty? || session[:last_page] == '/login'
-        redirect '/'
-      else
-        redirect "#{session[:last_page]}"
-      end
-    end
-  end
+
 
   get '/signup/?' do
     if logged_in?
@@ -71,23 +92,6 @@ class LoginController < AppController
 
   end
 
-  get '/profile/?' do
-    if logged_in?
-      erb :'login/user_profile'
-    else
-      session[:last_page] = '/profile'
-      redirect '/login'
-    end
-  end
 
-  post '/profile/delete' do
-    if !logged_in?
-      redirect '/'
-    else
-      user = @user
-      user.destroy
-      redirect '/logout'
-    end
-  end
 
 end
