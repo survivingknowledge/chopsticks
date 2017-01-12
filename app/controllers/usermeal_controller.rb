@@ -1,11 +1,12 @@
 class UsermealController < AppController
 
   get '/:userid/meals/add/:fooditemid/?' do
-    if logged_in? && current_user.id == params[:userid].to_i
+    @user = current_user
+    if logged_in? && @user.id == params[:userid].to_i
       @fooditem = Fooditem.find_by_id(params[:fooditemid])
       if @fooditem
         session[:meals] << @fooditem.id
-        redirect "/#{current_user.id}/meals/add"
+        redirect "/#{@user.id}/meals/add"
       end
     else
       redirect '/'
