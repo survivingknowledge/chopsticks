@@ -16,7 +16,9 @@ class LoginController < AppController
   end
 
   get '/profile' do
+
     if logged_in?
+      @user = current_user
       erb :'login/user_profile'
     else
       session[:last_page] = '/account'
@@ -28,7 +30,7 @@ class LoginController < AppController
     if !logged_in?
       redirect '/'
     else
-      user = @user
+      user = current_user
       user.destroy
       redirect '/logout'
     end

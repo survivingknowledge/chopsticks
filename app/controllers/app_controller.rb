@@ -11,7 +11,7 @@ class AppController < Sinatra::Base
   end
 
   before do
-    @user ||= current_user
+  #   @user ||= current_user
   end
 
   helpers do
