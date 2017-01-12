@@ -18,9 +18,19 @@ class MealController < AppController
 
   get '/meals/:id/?' do
     @meal = Meal.find_by_id(params[:id])
-    @fooditems = @meal.fooditems
-    if @fooditems
+    if @meal
+      @fooditems = @meal.fooditems
       erb :'meals/meal_show'
+    else
+      redirect '/meals'
+    end
+  end
+
+  get '/meals/:id/edit/?' do
+    @meal = Meal.find_by_id(params[:id])
+    if @meal
+      @fooditems = @meal.fooditems
+      erb :'meals/meal_edit'
     else
       redirect '/meals'
     end
@@ -62,6 +72,8 @@ class MealController < AppController
     @meal = Meal.new(params[:meal])
     @meal.fooditem_ids = params[:fooditem]
     @meal.save
+    #clear session[:meals]
+    session[:meals] = []
     redirect "/meals"
   end
 
